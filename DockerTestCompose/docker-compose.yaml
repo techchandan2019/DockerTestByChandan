@@ -1,0 +1,25 @@
+version: '3'
+services:
+  BootProj-07Consumer:
+    image: bootproj-07consumer
+    build:
+      context: ./BootProj-07Consumer
+      dockerfile: Dockerfile
+    networks:
+      - consumer-producer
+    depends_on:
+      - BootProj-07Producer	
+    ports:
+      - "9091:4041"
+  BootProj-07Producer:
+    image: bootproj-07producer
+    build:
+      context: ./BootProj-07Producer
+      dockerfile: Dockerfile
+    networks:
+      - consumer-producer
+    ports:
+      - "4042:4042"
+      
+networks:
+   consumer-producer:
